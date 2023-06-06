@@ -3,7 +3,7 @@ package fr.nilswenting.globalconverter;
 
 public class GlobalConverter {
 	public static void main(String[] args) {
-		Converter converter = new Converter();
+	Converter converter = new Converter();
         UserInputHandler inputHandler = new UserInputHandler();
         boolean continueConversion;
         do {
