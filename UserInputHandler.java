@@ -1,5 +1,7 @@
 package fr.nilswenting.globalconverter;
 
+// GESTION DES ENTREES UTILISATEURS
+
 import java.util.Scanner;
 
 public class UserInputHandler {
