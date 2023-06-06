@@ -1,10 +1,5 @@
 package fr.nilswenting.globalconverter;
-// Importer les fichiers de classes Converter et UserInputHandler si pas dans le meme package
-
-
-
-
-
+//Importer les fichiers de classes Converter et UserInputHandler si pas dans le même package
 
 public class GlobalConverter {
 	public static void main(String[] args) {
@@ -22,14 +17,12 @@ public class GlobalConverter {
                 isValid = converter.validateInput(input);
             }
             
-            
             char choice = UserInputHandler.getConversionChoice();
             String convertedResult = converter.converterInput(input, choice);
             System.out.println("Résultat : " + convertedResult);
-            
-            
-            
             char continueChoice;
+            
+            
             do {
                 continueChoice = inputHandler.getContinueChoice();
                 if (continueChoice != 'o' && continueChoice != 'n') {
@@ -40,16 +33,12 @@ public class GlobalConverter {
             continueConversion = (continueChoice == 'o');
 
             
-            
-           
-            
-            
-            
-            continueConversion = (continueChoice == 'o');
-
-        } 	while (continueConversion);
+        } while (continueConversion);
 
         inputHandler.closeScanner();
         System.exit(0);
     }
 }
+
+
+           
