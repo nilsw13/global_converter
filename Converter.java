@@ -1,10 +1,7 @@
 package fr.nilswenting.globalconverter;
 
-
-
 public class Converter {
 	
-		
 		private static final String[] hexadecimalValues = { "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "41", "42", "43", "44", "45", "46",
 	            "47", "48", "49", "4A", "4B", "4C", "4D", "4E", "4F", "50", "51", "52", "53", "54", "55", "56",
 	            "57", "58", "59", "5A", "61", "62", "63", "64", "65", "66", "67", "68", "69", "6A", "6B", "6C",
@@ -46,10 +43,7 @@ public class Converter {
 		
 		public String converterInput(String input, char choice) {
 		    String result = "";
-		    boolean validChoice = false;
-		    
-		   
-		    
+		    boolean validChoice = false; 
 		    do {
 		        
 		        switch (choice) {
@@ -71,8 +65,7 @@ public class Converter {
 		                break;
 		            default:
 		                System.out.println("Choix invalide. Veuillez choisir parmi les propositions.");
-		                choice = UserInputHandler.getConversionChoice();
-		                
+		                choice = UserInputHandler.getConversionChoice();     
 		        }
 		    } while (!validChoice);
 
@@ -167,7 +160,6 @@ public class Converter {
             System.out.println("O. Octal");
             System.out.println("H. Hexadécimal");
             System.out.println("B. Binaire");
-            
             choice = UserInputHandler.getRevertChoice();
 
             switch (choice) {
@@ -184,8 +176,7 @@ public class Converter {
                     System.out.println("Choix invalide. Veuillez choisir parmi les propositions.");
             }
         } while (choice != 'o' && choice != 'h' && choice != 'b');
-
-        
+     
         return result;
     }
         
