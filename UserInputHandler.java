@@ -8,9 +8,7 @@ public class UserInputHandler {
 	
 	public UserInputHandler() {
 		scanner = new Scanner(System.in);
-		
-		
-	}
+		}
 	
 	 
 	
@@ -22,7 +20,7 @@ public class UserInputHandler {
 	
 	
 	public static char getConversionChoice() {
-		System.out.println("Choisissez le type de conversion :");
+	System.out.println("Choisissez le type de conversion :");
         System.out.println("H. Hexadécimal");
         System.out.println("O. Octal");
         System.out.println("B. Binaire");
@@ -30,17 +28,14 @@ public class UserInputHandler {
         System.out.print("Votre choix : ");
         String choiceString = scanner.nextLine();        
         if (choiceString == null || choiceString.isEmpty()) {
-             
             return '\u0000';
-        }  
+        }
+        
         return choiceString.charAt(0);
-    
 	}
 	
 	
-	
 	public static char getRevertChoice() {
-		    
         return scanner.nextLine().toLowerCase().charAt(0);
     }
 	
