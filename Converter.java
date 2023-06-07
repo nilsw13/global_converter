@@ -5,22 +5,20 @@ package fr.nilswenting.globalconverter;
 public class Converter {
 	
 		
-		private static final String[] hexadecimalValues = { 
-		    "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "41", "42", "43", "44", "45", "46",
+		private static final String[] hexadecimalValues = { "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "41", "42", "43", "44", "45", "46",
 	            "47", "48", "49", "4A", "4B", "4C", "4D", "4E", "4F", "50", "51", "52", "53", "54", "55", "56",
 	            "57", "58", "59", "5A", "61", "62", "63", "64", "65", "66", "67", "68", "69", "6A", "6B", "6C",
 	            "6D", "6E", "6F", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "7A", "20", "27"
 		
 	};
 		
-		private static final String[] decimalValues = { 
-		    "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "65", "66", "67", "68", "69", "70", "71",
-		    "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "97", "98", "99", "100", "101", "102", "103",
-		    "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122", "32", "39"
+		private static final String[] decimalValues = { "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "65", "66", "67", "68", "69", "70", "71",
+				"72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "97", "98", "99", "100", "101", "102", "103",
+				"104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122", "32", "39"
 		};
 		
 		private static final String[] octalValues = {
-	    	    "060", "061", "062", "063", "064", "065", "066", "067", "070", "071", "101", "102", "103", "104", "105",
+	    		"060", "061", "062", "063", "064", "065", "066", "067", "070", "071", "101", "102", "103", "104", "105",
 	            "106", "107", "110", "111", "112", "113", "114", "115", "116", "117", "120", "121", "122", "123",
 	            "124", "125", "126", "127", "130", "131", "132", "141", "142", "143", "144", "145", "146", "147",
 	            "150", "151", "152", "153", "154", "155", "156", "157", "160", "161", "162", "163", "164", "165",
@@ -43,7 +41,7 @@ public class Converter {
 		}
 		
 		public boolean accurateChar(String input) {
-			return input.matches("[hob]");
+			return input.matches("[hobd]");
 		}
 		
 		public boolean isValidChoice(char choice) {
@@ -55,7 +53,7 @@ public class Converter {
 		    String result = "";
 		    boolean validChoice = false; 
 		    do {
-		        
+		         
 		        switch (choice) {
 		            case 'h':
 		                result = convertToHexadecimal(input);
@@ -207,6 +205,8 @@ public class Converter {
 	public String convertToText(String input, char choice) {
        
         String result = "";
+         
+        
         do {
             System.out.println("Choisissez la base de conversion pour revenir au texte :");
             System.out.println("o. Octal");
@@ -214,6 +214,7 @@ public class Converter {
             System.out.println("b. Binaire");
             System.out.println("d. Décimal");
             choice = UserInputHandler.getRevertChoice();
+             
 
             switch (choice) {
                 case 'o':
