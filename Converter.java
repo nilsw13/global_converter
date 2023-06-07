@@ -4,12 +4,18 @@ package fr.nilswenting.globalconverter;
 
 public class Converter {
 	
+		
 		private static final String[] hexadecimalValues = { "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "41", "42", "43", "44", "45", "46",
 	            "47", "48", "49", "4A", "4B", "4C", "4D", "4E", "4F", "50", "51", "52", "53", "54", "55", "56",
 	            "57", "58", "59", "5A", "61", "62", "63", "64", "65", "66", "67", "68", "69", "6A", "6B", "6C",
 	            "6D", "6E", "6F", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "7A", "20", "27"
 		
 	};
+		
+		private static final String[] decimalValues = { "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "65", "66", "67", "68", "69", "70", "71",
+				"72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "97", "98", "99", "100", "101", "102", "103",
+				"104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122", "32", "39"
+		};
 		
 		private static final String[] octalValues = {
 	    		"060", "061", "062", "063", "064", "065", "066", "067", "070", "071", "101", "102", "103", "104", "105",
@@ -39,7 +45,7 @@ public class Converter {
 		}
 		
 		public boolean isValidChoice(char choice) {
-	        return choice == 'h' || choice == 'o' || choice == 'b' || choice == 't';
+	        return choice == 'h' || choice == 'o' || choice == 'b' || choice == 't' || choice == 'd';
 	    }
 		
 		
@@ -53,6 +59,10 @@ public class Converter {
 		                result = convertToHexadecimal(input);
 		                validChoice = true;
 		                break;
+		            case 'd':
+		            	result = convertToDecimal(input);
+		            	validChoice = true;
+		            	break;
 		            case 'o':
 		                result = convertToOctal(input);
 		                validChoice = true;
@@ -74,6 +84,32 @@ public class Converter {
 		    return result;
 		}
 		
+		
+		private String convertToDecimal (String input) {
+			StringBuilder decimal = new StringBuilder();
+			for (char c : input.toCharArray()) {
+				int index = c - 'A';
+				if (Character.isDigit(c) && c != '0') {
+					index = c - '1' + 1;
+	        	}else if (c == '\'') {
+	        		index = 63;
+	        	}else if (c == '0') {
+	        	    index = 0;
+	        	}else if ( Character.isUpperCase(c)) {
+	        		index = c - 'A' +10;
+	        	} else if (Character.isLowerCase(c)) {
+	                index = c - 'a' + 36;
+	            } else if (Character.isWhitespace(c)) {
+	            	index = c - ' ' +62;
+	            }
+	            if (index >= 0 && index < 64) {
+	                decimal.append(decimalValues[index]);
+	                decimal.append(" ");
+	                
+	            }
+	        }
+	        return decimal.toString();
+		}
 		
 		
 		
@@ -97,10 +133,13 @@ public class Converter {
 	            }
 	            if (index >= 0 && index < 64) {
 	                hexadecimal.append(hexadecimalValues[index]);
-	                
+	                //hexadecimal.append(" ");
 	            }
 	        }
-	        return hexadecimal.toString();
+	        String hexadecimalString = hexadecimal.toString();
+	        String[] split = hexadecimalString.split("(?<=\\G.{2})");
+
+	        return String.join(" ", split);
 		}
 		
 		private static String convertToOctal(String input) {
@@ -123,9 +162,14 @@ public class Converter {
 	            }
 	            if (index >= 0 && index < 64) {
 	                octal.append(octalValues[index]);
+	                //octal.append(" ");
 	            } 
 	        }
-	        return octal.toString();
+	        String octalString = octal.toString();
+	        String[] split = octalString.split("(?<=\\G.{3})");
+
+	        return String.join(" ", split);
+	        
 		}
 
 	
@@ -149,9 +193,13 @@ public class Converter {
             }
             if (index >= 0 && index < 64) {
                 binary.append(binaryValues[index]);
+                
             } 
         }
-        return binary.toString();
+        String binaryString = binary.toString();
+        String[] split = binaryString.split("(?<=\\G.{8})");
+
+        return String.join(" ", split);
     }
 	
 	public String convertToText(String input, char choice) {
@@ -159,9 +207,10 @@ public class Converter {
         String result = "";
         do {
             System.out.println("Choisissez la base de conversion pour revenir au texte :");
-            System.out.println("O. Octal");
-            System.out.println("H. Hexadécimal");
-            System.out.println("B. Binaire");
+            System.out.println("o. Octal");
+            System.out.println("h. Hexadécimal");
+            System.out.println("b. Binaire");
+            System.out.println("d. Décimal");
             choice = UserInputHandler.getRevertChoice();
 
             switch (choice) {
@@ -174,10 +223,13 @@ public class Converter {
                 case 'b':
                     result = revertFromBinary(input);
                     break;
+                case 'd':
+                    result = revertFromDecimal(input);
+                    break;
                 default:
                     System.out.println("Choix invalide. Veuillez choisir parmi les propositions.");
             }
-        } while (choice != 'o' && choice != 'h' && choice != 'b');
+        } while (choice != 'o' && choice != 'h' && choice != 'b' && choice != 'd');
      
         return result;
     }
@@ -186,7 +238,7 @@ public class Converter {
     
         private static String revertFromOctal(String input) {
             StringBuilder text = new StringBuilder();
-            String[] split = input.split("(?<=\\G.{3})");
+            String[] split = input.split(" ");
             for (String s : split) {
                 int decimal = 0;
                 int power = 0;
@@ -202,7 +254,7 @@ public class Converter {
         
         private static String revertFromHexadecimal(String input) {
             StringBuilder text = new StringBuilder();
-            String[] split = input.split("(?<=\\G.{2})");
+            String[] split = input.split(" ");
             for (String s : split) {
                 int decimal = 0;
                 int power = 0;
@@ -230,7 +282,7 @@ public class Converter {
         
         private static String revertFromBinary(String input) {
             StringBuilder text = new StringBuilder();
-            String[] split = input.split("(?<=\\G.{8})");
+            String[] split = input.split(" ");
             for (String s : split) {
                 int decimal = 0;
                 int power = 0;
@@ -240,9 +292,22 @@ public class Converter {
                     power++;
                 }
                 text.append((char) decimal);
+                
             }
             return text.toString();
         }
+        
+        private static String revertFromDecimal(String input) {
+            StringBuilder text = new StringBuilder();
+            String[] split = input.split(" ");
+            for (String s : split) {
+                int decimal = Integer.parseInt(s);
+                text.append((char) decimal);
+            }
+            return text.toString();
+            }
+            
+            
         
 	
 	
