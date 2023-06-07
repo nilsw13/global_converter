@@ -31,7 +31,7 @@ public class UserInputHandler {
         System.out.print("Votre choix : ");
         String choiceString = scanner.nextLine();        
         if (choiceString.isEmpty()) {
-            return '\u0000';
+            return '\u0000'; 
         }
         
         return choiceString.charAt(0);
@@ -40,17 +40,18 @@ public class UserInputHandler {
 	
 	
 	public static char getRevertChoice() {
-	    String choiceString = scanner.nextLine().trim();
+		String choiceString = scanner.nextLine().trim();
 	    if (choiceString.isEmpty()) {
 	        return '\u0000';
 	    }
 	    return choiceString.charAt(0);
 	}
+     
 	
 	public char getContinueChoice() {
 		  	System.out.print("Souhaitez-vous réaliser une nouvelle conversion ? (o: Oui, n: Non) ");
 		    String choiceStringContinue = scanner.nextLine();
-		    if (choiceStringContinue.isEmpty() || (choiceStringContinue.charAt(0) != 'o' && choiceStringContinue.charAt(0) != 'n') {
+		    if (choiceStringContinue.isEmpty() || choiceStringContinue.charAt(0) != 'o' && choiceStringContinue.charAt(0) != 'n') {
 		         
 		        return '\u0000';
 		    }
