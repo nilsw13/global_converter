@@ -22,8 +22,9 @@ public class UserInputHandler {
 	
 	
 	public static char getConversionChoice() {
-	System.out.println("Choisissez le type de conversion :");
+		System.out.println("Choisissez le type de conversion :");
         System.out.println("H. Hexadécimal");
+        System.out.println("D. Décimal");
         System.out.println("O. Octal");
         System.out.println("B. Binaire");
         System.out.println("T. Texte");
@@ -34,6 +35,7 @@ public class UserInputHandler {
         }
         
         return choiceString.charAt(0);
+    
 	}
 	
 	
