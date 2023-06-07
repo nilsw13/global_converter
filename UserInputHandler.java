@@ -40,8 +40,12 @@ public class UserInputHandler {
 	
 	
 	public static char getRevertChoice() {
-        return scanner.nextLine().toLowerCase().charAt(0);
-    }
+	    String choiceString = scanner.nextLine().trim();
+	    if (choiceString.isEmpty()) {
+	        return '\u0000';
+	    }
+	    return choiceString.charAt(0);
+	}
 	
 	public char getContinueChoice() {
 		  	System.out.print("Souhaitez-vous réaliser une nouvelle conversion ? (o: Oui, n: Non) ");
