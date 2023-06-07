@@ -30,7 +30,7 @@ public class UserInputHandler {
         System.out.println("T. Texte");
         System.out.print("Votre choix : ");
         String choiceString = scanner.nextLine();        
-        if (choiceString == null || choiceString.isEmpty()) {
+        if (choiceString.isEmpty()) {
             return '\u0000';
         }
         
@@ -50,7 +50,7 @@ public class UserInputHandler {
 	public char getContinueChoice() {
 		  	System.out.print("Souhaitez-vous réaliser une nouvelle conversion ? (o: Oui, n: Non) ");
 		    String choiceStringContinue = scanner.nextLine();
-		    if (choiceStringContinue == null || choiceStringContinue.isEmpty() || choiceStringContinue.length() > 1 || (choiceStringContinue.charAt(0) != 'o' && choiceStringContinue.charAt(0) != 'n')) {
+		    if (choiceStringContinue.isEmpty() || (choiceStringContinue.charAt(0) != 'o' && choiceStringContinue.charAt(0) != 'n') {
 		         
 		        return '\u0000';
 		    }
